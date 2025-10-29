@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Biblioteca Universitária</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        form { margin-bottom: 20px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h1>Cadastro de Livros (Flask)</h1>
+
+    <form action="/" method="POST">
+        <input type="text" name="titulo" placeholder="Título" required>
+        <input type="text" name="autor" placeholder="Autor" required>
+        <input type="number" name="ano_publicacao" placeholder="Ano" required>
+        <button type="submit">Adicionar Livro</button>
+    </form>
+
+    <hr>
+
+    <h2>Livros Cadastrados</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Ano</th>
+                <th>Disponível</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for livro in livros %}
+            <tr>
+                <td>{{ livro.id }}</td>
+                <td>{{ livro.titulo }}</td>
+                <td>{{ livro.autor }}</td>
+                <td>{{ livro.ano_publicacao }}</td>
+                <td>{{ 'Sim' if livro.disponivel else 'Não' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
