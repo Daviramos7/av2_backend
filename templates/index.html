@@ -2,49 +2,144 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biblioteca Universitária</title>
     <style>
-        body { font-family: sans-serif; margin: 20px; }
-        form { margin-bottom: 20px; }
-        table { border-collapse: collapse; width: 100%; }
-        th, td { border: 1px solid #ddd; padding: 8px; }
-        th { background-color: #f2f2f2; }
+        /* Estilo Geral */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Container Principal */
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+        }
+
+        h1, h2 {
+            color: #2a2a2a;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+
+        /* Estilo do Formulário */
+        form {
+            display: flex;
+            flex-wrap: wrap; /* Permite que os itens quebrem a linha em telas pequenas */
+            gap: 15px; /* Espaço entre os campos */
+            margin-bottom: 30px;
+        }
+
+        form input[type="text"],
+        form input[type="number"] {
+            flex: 1; /* Faz os campos crescerem para preencher o espaço */
+            min-width: 150px; /* Largura mínima antes de quebrar a linha */
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            box-sizing: border-box; /* Garante que o padding não afete a largura total */
+        }
+
+        form button {
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Estilo da Tabela */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #e0e0e0;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        thead {
+            background-color: #f9f9f9;
+        }
+
+        th {
+            font-weight: 600;
+            color: #555;
+        }
+
+        /* Linhas da tabela com cores alternadas */
+        tbody tr:nth-of-type(even) {
+            background-color: #fdfdfd;
+        }
+
+        /* Efeito de hover na linha */
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
     </style>
 </head>
 <body>
-    <h1>Cadastro de Livros (Flask)</h1>
 
-    <form action="/" method="POST">
-        <input type="text" name="titulo" placeholder="Título" required>
-        <input type="text" name="autor" placeholder="Autor" required>
-        <input type="number" name="ano_publicacao" placeholder="Ano" required>
-        <button type="submit">Adicionar Livro</button>
-    </form>
+    <div class="container">
+        <h1>Cadastro de Livros (Flask)</h1>
 
-    <hr>
+        <form action="/" method="POST">
+            <input type="text" name="titulo" placeholder="Título" required>
+            <input type="text" name="autor" placeholder="Autor" required>
+            <input type="number" name="ano_publicacao" placeholder="Ano" required>
+            <button type="submit">Adicionar Livro</button>
+        </form>
 
-    <h2>Livros Cadastrados</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Título</th>
-                <th>Autor</th>
-                <th>Ano</th>
-                <th>Disponível</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for livro in livros %}
-            <tr>
-                <td>{{ livro.id }}</td>
-                <td>{{ livro.titulo }}</td>
-                <td>{{ livro.autor }}</td>
-                <td>{{ livro.ano_publicacao }}</td>
-                <td>{{ 'Sim' if livro.disponivel else 'Não' }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+        <h2>Livros Cadastrados</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th>Ano</th>
+                    <th>Disponível</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for livro in livros %}
+                <tr>
+                    <td>{{ livro.id }}</td>
+                    <td>{{ livro.titulo }}</td>
+                    <td>{{ livro.autor }}</td>
+                    <td>{{ livro.ano_publicacao }}</td>
+                    <td>{{ 'Sim' if livro.disponivel else 'Não' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
 </body>
 </html>
